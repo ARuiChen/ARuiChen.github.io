@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="3DFaceShop:Explicitly Controllable 3D-Aware Portrait Generation">
+  <meta name="keywords" content="MPI,RNCR">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3DFaceShop: Explicitly Controllable 3D-Aware Portrait Generation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">3DFaceShop: Explicitly Controllable 3D-Aware Portrait Generation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://junshutang.github.io/">Junshu Tang</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://bo-zhang.me/">Bo Zhang</a><sup>2</sup>,</span>
+            <span class="author-block">
+              <a href=" "> Binxin Yang</a><sup>3</sup>,
+            </span>
+            <span class="author-block">
+              <a href=" "> Ting Zhang</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="http://www.dongchen.pro/">Dong Chen </a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://dmcv.sjtu.edu.cn/">Lizhuang Ma</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.microsoft.com/en-us/research/people/fangwen/"> Fang Wen</a><sup>2</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Shanghai Jiao Tong University</span>
+            <span class="author-block"><sup>2</sup> Microsoft Research Asia</span>
+            <span class="author-block"><sup>3</sup> University of Science and Technology of China</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2209.05434"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Video Link.
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=otL3UAak7wQ"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/junshutang/3DFaceShop"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span> -->
+                  </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+        <div class="content has-text-centered">
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/videos/new_8_interp.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/videos/new_268_interp.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/videos/new_235_interp.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/videos/new_266_interp.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/videos/new_234_interp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="content has-text-centered">
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/videos/new_843.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/videos/new_381_interp.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/videos/new_359_interp.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/videos/new_342_interp.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/videos/new_305_interp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            In contrast to traditional avatar creation pipeline which is a costly process, 
+            contemporary generative approaches directly learn the data distribution from photographs 
+            and the state of the arts can now yields highly photo-realistic images. While plenty of 
+            works attempt to extend the unconditional generative models and achieve some level of 
+            controllability, it is still challenging to ensure multi-view consistency especially in 
+            large poses. In this work, we propose a 3D portrait generation network that produces 3D 
+            consistent portraits while being controllable according to semantic parameters regarding
+             pose, identity, expression and lighting. The generative network uses neural scene 
+             representation to model portraits in 3D, whose generation is guided by a parametric 
+             face model that supports explicit control. While the latent disentanglement can be 
+             further enhanced by contrasting images with partially different attributes, there 
+             still exists noticeable inconsistency in non-face areas, e.g., hair and background, 
+             when animating expressions. We solve this by proposing a radiance field blending 
+             strategy in which we form a composite output by blending the dynamic and static 
+             radiance fields, with two parts segmented from the jointly learned semantic field. 
+             Our method outperforms prior arts in extensive experiments, producing realistic 
+             portraits with vivid expression in natural lighting when viewed in free viewpoint. 
+             The proposed method also demonstrates generalization ability to real images as well 
+             out-of-domain cartoon faces, showing great promise in real applications. 
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Pipeline</h2>
+        <div class="content has-text-justified">
+          <p>
+            We aim to propose a 3D-aware GAN that allows explicit semantic control with respect to pose, 
+            identity, expression and illumination. To achieve this, we leverage a 3D-aware generator to 
+            ensure view consistency, and the generation is guided by a 3D face prior that admits semantic 
+            and interpretable control. As illustrated in the figure, the 3D-aware GAN 
+            samples from the latent space formed by a set of control parameters and the generation outputs
+            are enforced to imitate the rendered face from the parametric face model. 
+          </p>
+        </div>
+        <div>
+          <img src="./static/images/method.png" alt="method" class="center">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Illumination Animation</h2>
+        <div class="content has-text-justified">
+          <p>
+            We can smoothly change illuminations. Specifically, we change the position
+            and intensity of the light by changing the corresponding
+            spherical harmonics coefficients. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="content has-text-centered">
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/ill/new_303.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/ill/new_1171.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/ill/new_1111.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/ill/new_825_interp.mp4"
+                    type="video/mp4">
+          </video>
+          <video poster="" id="" autoplay controls muted loop height="100%" width="18%">
+            <source src="./static/ill/new_1053_interp.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Real Portrait Animation</h2>
+        <div class="content has-text-justified">
+          <p>
+            Given a real image, we project the real image into the 
+            latent space and achieve portrait image editing sequentially.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="content has-text-centered">
+        <div>
+          <img width="16%" src="./static/real/obama.png" alt="method" class="center">
+          <video poster="" id="" autoplay controls muted loop height="100%" width="16%">
+            <source src="./static/real/new_obama_exp_0.mp4"
+                    type="video/mp4">
+          </video>
+          <img width="16%" src="./static/real/tom.png" alt="method" class="center">
+          <video poster="" id="" autoplay controls muted loop height="100%" width="16%">
+            <source src="./static/real/new_tom_exp_0.mp4"
+                    type="video/mp4">
+          </video>
+          <img width="16%" src="./static/real/gal.png" alt="method" class="center">
+          <video poster="" id="" autoplay controls muted loop height="100%" width="16%">
+            <source src="./static/real/new_gal_exp_0.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- We can also implement progressive editing by changing 
+            one specific attribute sequentially while keeping other 
+            attributes and identities unchanged. -->
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            The website code is borrowed from the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of Nerfies. We thank the authors for sharing the templates.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

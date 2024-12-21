@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Load mesh model </title>
+    <script type="text/javascript" src="../../static/libs/three.js"></script>
+    <script type="text/javascript" src="../../static/libs/PLYLoader.js"></script>
+    <script type="text/javascript" src="../../static/libs/OBJLoader.js"></script>
+
+    <script type="text/javascript" src="../../static/libs/stats.js"></script>
+    <script type="text/javascript" src="../../static/libs/dat.gui.js"></script>
+    <script type="text/javascript" src="../../static/libs/OrbitControls.js"></script>
+    <style>
+        body {
+            /* set margin to 0 and overflow to hidden, to go fullscreen */
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div id="Stats-output">
+</div>
+<!-- Div which will hold the Output -->
+<div id="WebGL-output">
+</div>
+
+<!-- Javascript code that runs our Three.js examples -->
+<script type="text/javascript">
+    let allowRotation = true; // 控制是否旋转
+    // once everything is loaded, we run our Three.js stuff.
+    function init() {
+        
+        // var stats = initStats();
+
+        // create a scene, that will hold all our elements such as objects, cameras and lights.
+        var scene = new THREE.Scene();
+        var rotation = 0;
+
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
+        
+        // create a render and set the size
+        var webGLRenderer = new THREE.WebGLRenderer( { antialias: true,alpha: true});
+        webGLRenderer.setClearColor(new THREE.Color(0x000, 1.0));
+        webGLRenderer.setSize(window.innerWidth, window.innerHeight);
+        webGLRenderer.shadowMapEnabled = true;
+
+        // position and point the camera to the center of the scene
+        camera.position.x = 2.5;
+        camera.position.y = 2.5;
+        camera.position.z = 2.5;
+        camera.lookAt(new THREE.Vector3(0, 0, 0));
+        var orbit = new THREE.OrbitControls(camera);
+        orbit.userPanSpeed=0.04        
+        orbit.maxDistance = 6
+        orbit.center =  new THREE.Vector3(0, -0.1, 0);
+        // var spotLight = new THREE.SpotLight(0x000);
+        // spotLight.position.set(2, 2, 2);
+        // scene.add(spotLight);
+
+        // add the output of the renderer to the html element
+        document.getElementById("WebGL-output").appendChild(webGLRenderer.domElement);
+
+        // call the render function
+        var step = 0;
+
+
+        // setup the control gui
+        var controls = new function () {
+            // we need the first child, since it's a multimaterial
+
+
+        };
+
+        var group;
+        var gui = new dat.GUI();
+        dat.GUI.toggleHide();
+
+        var mesh;
+        var loader = new THREE.OBJLoader();
+        loader.load('../../assets/reconstruction/1_3.obj', function (loadedMesh) {
+            var material = new THREE.MeshNormalMaterial({color: 0x7777ff});
+
+            // loadedMesh is a group of meshes. For
+            // each mesh set the material, and compute the information
+            // three.js needs for rendering.
+            loadedMesh.children.forEach(function (child) {
+                child.material = material;
+                child.geometry.computeFaceNormals();
+                child.geometry.computeVertexNormals();
+            });
+
+            mesh = loadedMesh;
+            // mesh.position.z += 2
+            // loadedMesh.scale.set(100, 100, 100);
+            // loadedMesh.rotation.x = -0.3;
+            scene.add(loadedMesh);
+        });
+       
+        window.addEventListener('mousedown', function(event) {
+        if (event.button === 0) { // 0 表示左键
+            allowRotation = false; // 禁止旋转
+        }
+         });
+        
+        window.addEventListener('resize', function() {
+        var width = window.innerWidth;
+        var height = window.innerHeight; // 重新计算高度
+        webGLRenderer.setSize(width, height);
+        camera.aspect = width/height; // 更新相机的宽高比
+        camera.updateProjectionMatrix(); // 更新相机的投影矩阵
+       });
+
+        render();
+
+        // from THREE.js examples
+        function generateSprite() {
+
+            var canvas = document.createElement('canvas');
+            canvas.width = 16;
+            canvas.height = 16;
+
+            var context = canvas.getContext('2d');
+            var gradient = context.createRadialGradient(canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, canvas.width / 2);
+            gradient.addColorStop(0, 'rgba(255,255,255,1)');
+            gradient.addColorStop(0.2, 'rgba(0,255,255,1)');
+            gradient.addColorStop(0.4, 'rgba(0,0,64,1)');
+            gradient.addColorStop(1, 'rgba(0,0,0,1)');
+
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            var texture = new THREE.Texture(canvas);
+            texture.needsUpdate = true;
+            return texture;
+
+        }
+        
+        function render() {
+            // stats.update();  
+            orbit.update();
+            if (mesh&& allowRotation) {
+                rotation += 0.01
+                camera.position.x = Math.sin(rotation) * 3;
+                camera.position.y = Math.sin(rotation) * 1 +0.5;
+                camera.position.z = Math.cos(rotation) * 3;
+                // mesh.rotation.y += 0.01;
+            }
+            
+            // render using requestAnimationFrame
+            requestAnimationFrame(render);
+            
+            webGLRenderer.render(scene, camera);
+        }
+
+        function initStats() {
+
+            // var stats = new Stats();
+            // stats.setMode(0); // 0: fps, 1: ms
+
+            // // Align top-left
+            // stats.domElement.style.position = 'absolute';
+            // stats.domElement.style.left = '0px';
+            // stats.domElement.style.top = '0px';
+
+            // document.getElementById("Stats-output").appendChild(stats.domElement);
+
+            // return stats;
+        }
+    }
+    window.onload = init;
+    window.addEventListener('wheel', function(event) {
+        event.preventDefault(); // 阻止默认滚动行为
+    }, { passive: false }); // 设置 passive: false 以允许 preventDefault
+</script>
+
+</body>
+</html>

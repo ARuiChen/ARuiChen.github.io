@@ -1,0 +1,4 @@
+0.obj filter=lfs diff=lfs merge=lfs -text
+*.obj filter=lfs diff=lfs merge=lfs -text
+Dora/assets/reconstruction/*.obj filter=lfs diff=lfs merge=lfs -text
+Dora/assets/image_to_3d/*.obj filter=lfs diff=lfs merge=lfs -text

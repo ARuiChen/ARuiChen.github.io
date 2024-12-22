@@ -39,12 +39,22 @@
         var scene = new THREE.Scene();
         var rotation = 0;
         // create a camera, which defines where we're looking at.
-        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
+        //var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerWidth, 0.01, 100);
+        var frustumSize = 2.8; // 视锥体的大小
+        var aspect = window.innerWidth / window.innerWidth;
+        var camera = new THREE.OrthographicCamera(
+            -frustumSize * aspect / 2, // left
+            frustumSize * aspect / 2,  // right
+            frustumSize / 2,           // top
+            -frustumSize / 2,         // bottom
+            0.01,                      // near
+            10                       // far
+        );
         
         // create a render and set the size
         var webGLRenderer = new THREE.WebGLRenderer( { antialias: true,alpha: true});
         webGLRenderer.setClearColor(new THREE.Color(0x000, 1.0));
-        webGLRenderer.setSize(window.innerWidth, window.innerHeight);
+        webGLRenderer.setSize(window.innerWidth, window.innerWidth);
         webGLRenderer.shadowMapEnabled = true;
 
         // position and point the camera to the center of the scene
@@ -84,8 +94,8 @@
         loader.load("../../assets/reconstruction/2_2_ses_32768.ply", function (geometry) {
             var material = new THREE.PointCloudMaterial({
                 color: 0xffffff,
-                size: 0.04,
-                opacity: 0.8,
+                size: 0.05,
+                opacity: 0.3,
                 transparent: true,
                 blending: THREE.AdditiveBlending,
                 map: generateSprite()
@@ -105,7 +115,7 @@
 
         window.addEventListener('resize', function() {
         var width = window.innerWidth;
-        var height = window.innerHeight; // 重新计算高度
+        var height = window.innerWidth; // 重新计算高度
         webGLRenderer.setSize(width, height);
         camera.aspect = width/height; // 更新相机的宽高比
         camera.updateProjectionMatrix(); // 更新相机的投影矩阵
@@ -140,11 +150,11 @@
             
             orbit.update();
             if (group&& allowRotation) {
-                rotation += 0.01
+                rotation += 0.025
                 camera.position.x = Math.sin(rotation) * 2;
                 camera.position.y = Math.sin(rotation) * 1 +1;
                 camera.position.z = Math.cos(rotation) * 2;
-            // group.rotation.y += 0.01;
+            // group.rotation.y += 0.025;
             }
             
             // render using requestAnimationFrame

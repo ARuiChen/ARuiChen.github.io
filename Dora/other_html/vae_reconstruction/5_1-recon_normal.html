@@ -39,7 +39,17 @@
         var scene = new THREE.Scene();
         var rotation = 0;
 
-        var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
+        //var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.01, 100);
+        var frustumSize = 2.8; // 视锥体的大小
+        var aspect = window.innerWidth / window.innerWidth;
+        var camera = new THREE.OrthographicCamera(
+            -frustumSize * aspect / 2, // left
+            frustumSize * aspect / 2,  // right
+            frustumSize / 2,           // top
+            -frustumSize / 2,         // bottom
+            0.01,                      // near
+            10                       // far
+        );
         
         // create a render and set the size
         var webGLRenderer = new THREE.WebGLRenderer( { antialias: true,alpha: true});

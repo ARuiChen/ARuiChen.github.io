@@ -92,9 +92,11 @@ body {
 .publication-video {
     position: relative;
     width: 100%;
-    height: 0;
+    height: auto;
+    left: 1000;
+    right:1000;
     padding-bottom: 56.25%;
-
+    text-align: center;
     overflow: hidden;
     border-radius: 10px !important;
 }
